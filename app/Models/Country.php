@@ -13,7 +13,7 @@ class Country extends Model implements TranslatableContract
     /**
      * @var array<string>
      */
-    public array $translatedAttributes = ['title', 'content'];
+    public array $translatedAttributes = ['name'];
 
     protected $fillable = [
         'code',
