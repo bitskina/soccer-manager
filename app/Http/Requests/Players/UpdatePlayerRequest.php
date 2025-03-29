@@ -11,7 +11,7 @@ class UpdatePlayerRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,9 @@ class UpdatePlayerRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'first_name' => 'sometimes|string|max:255',
+            'last_name' => 'sometimes|string|max:255',
+            'country_id' => 'sometimes|integer|exists:countries,id',
         ];
     }
 }

@@ -17,8 +17,15 @@ class TeamResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
+            'id' => $this->id,
             'name' => $this->name,
-            'value' => $this->whenAggregated('players', 'market_value', 'sum', fn () => Number::currency($this->players_sum_market_value)),
+            'budget' => Number::currency(is_numeric($this->budget) ? (float) $this->budget : 0),
+            'value' => $this->whenAggregated(
+                'players',
+                'market_value',
+                'sum',
+                fn () => Number::currency(is_numeric($this->players_sum_market_value) ? (float) $this->players_sum_market_value : 0)
+            ),
             'country' => CountryResource::make($this->whenLoaded('country')),
         ];
     }

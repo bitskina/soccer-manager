@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Enums\PlayerTransferStatus;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
@@ -33,5 +34,21 @@ class PlayerTransfer extends Model
     public function player(): BelongsTo
     {
         return $this->belongsTo(Player::class);
+    }
+
+    /**
+     * Scope a query to only include active player transfers.
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder<\App\Models\PlayerTransfer>  $query
+     * @return \Illuminate\Database\Eloquent\Builder<\App\Models\PlayerTransfer>
+     */
+    public function scopeActive(Builder $query): Builder
+    {
+        return $query->where('status', PlayerTransferStatus::Active);
+    }
+
+    public function isActive(): bool
+    {
+        return $this->status === PlayerTransferStatus::Active;
     }
 }

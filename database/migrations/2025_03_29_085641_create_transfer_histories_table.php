@@ -1,6 +1,5 @@
 <?php
 
-use App\Enums\PlayerPosition;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -12,19 +11,20 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('players', function (Blueprint $table) {
+        Schema::create('transfer_histories', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('team_id')->constrained()
+            $table->foreignId('buyer_team_id')->constrained('teams')
                 ->cascadeOnUpdate()
                 ->restrictOnDelete();
-            $table->foreignId('country_id')->constrained()
+            $table->foreignId('seller_team_id')->constrained('teams')
                 ->cascadeOnUpdate()
                 ->restrictOnDelete();
-            $table->string('first_name');
-            $table->string('last_name');
-            $table->enum('position', PlayerPosition::values());
-            $table->unsignedTinyInteger('age');
-            $table->decimal('market_value', 15);
+            $table->foreignId('player_id')->constrained()
+                ->cascadeOnUpdate()
+                ->restrictOnDelete();
+            $table->decimal('market_price', 15);
+            $table->decimal('price_after_transfer', 15);
+            $table->decimal('sell_price', 15);
             $table->timestamps();
         });
     }
@@ -34,6 +34,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('players');
+        Schema::dropIfExists('transfer_histories');
     }
 };

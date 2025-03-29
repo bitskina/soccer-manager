@@ -20,7 +20,7 @@ return new class extends Migration
             $table->foreignId('player_id')->constrained()
                 ->cascadeOnUpdate()
                 ->restrictOnDelete();
-            $table->decimal('sell_price', 10);
+            $table->decimal('sell_price', 15);
             $table->enum('status', PlayerTransferStatus::values())
                 ->default(PlayerTransferStatus::Active);
             $table->timestamps();

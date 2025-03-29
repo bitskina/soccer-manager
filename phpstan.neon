@@ -3,6 +3,10 @@ includes:
     - vendor/nesbot/carbon/extension.neon
 
 parameters:
+    universalObjectCratesClasses:
+        - Illuminate\Http\Resources\Json\JsonResource
+    ignoreErrors:
+        - '#Cannot call method withTranslation\(\) on mixed\.#'
 
     paths:
         - app/

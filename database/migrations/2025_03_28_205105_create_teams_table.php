@@ -20,7 +20,7 @@ return new class extends Migration
                 ->cascadeOnUpdate()
                 ->restrictOnDelete();
             $table->string('name');
-            $table->decimal('budget', 10)->nullable();
+            $table->decimal('budget', 15)->nullable();
             $table->timestamps();
         });
     }

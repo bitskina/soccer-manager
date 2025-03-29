@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Exceptions\BusinessLogicException;
 use App\Http\Requests\Teams\UpdateTeamRequest;
 use App\Http\Resources\Teams\TeamResource;
 use App\Models\User;
@@ -24,19 +23,12 @@ class TeamController extends Controller
         ]);
     }
 
-    /**
-     * @throws \App\Exceptions\BusinessLogicException
-     */
     public function update(UpdateTeamRequest $request): JsonResponse
     {
-        /** @var User $user */
-        $user = Auth::user();
+        /** @var \App\Models\Team $team */
+        $team = Auth::user()?->team;
 
-        if (blank($user->team)) {
-            throw new BusinessLogicException(__('exception.team_not_found'));
-        }
-
-        $this->teamService->update($user->team, $request->validated());
+        $this->teamService->update($team, $request->validated());
 
         return response()->success();
     }

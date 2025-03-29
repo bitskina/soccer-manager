@@ -54,4 +54,9 @@ class User extends Authenticatable
     {
         return $this->hasOne(Team::class);
     }
+
+    public function getBudget(): ?float
+    {
+        return once(fn () => $this->team?->budget);
+    }
 }
