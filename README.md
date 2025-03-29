@@ -40,7 +40,7 @@ Before you begin, ensure you have the following installed:
 
 5. Configure your `.env` file for the database connection (update the DB credentials).
 
-6. Run the migrations and seed the database with default data:
+6. Run the migrations and seed the database with default data (this will also seed a few translated countries):
 
     ```bash
     php artisan migrate --seed
@@ -62,7 +62,7 @@ Before you begin, ensure you have the following installed:
 
 ## Running the Queue Worker
 
-To process background jobs (such as player transfers, updates, etc.), you need to run the queue worker:
+To process background jobs (such as player transfers, team generation, etc.), you need to run the queue worker:
 
 1. Start the queue worker in a new terminal window:
 
@@ -70,7 +70,12 @@ To process background jobs (such as player transfers, updates, etc.), you need t
     php artisan queue:work
     ```
 
-If you're using Redis for queue management, ensure Redis is running on your machine or server. For local setup, follow the [Redis installation guide](https://redis.io/docs/getting-started/).
+## Localization
+
+The seeder includes a few translated countries. If you need localization, you must pass the `X-Accept-Language` header in your requests. Available languages are:
+
+- `ka` (Georgian)
+- `en` (English)
 
 ## API Documentation
 
