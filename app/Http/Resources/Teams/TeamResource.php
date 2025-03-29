@@ -32,6 +32,6 @@ class TeamResource extends JsonResource
 
     private function formatAmount(mixed $amount): string|false
     {
-        return Number::currency(is_numeric($this->budget) ? (float) $this->budget : 0);
+        return Number::currency(is_numeric($amount) ? (float) $amount : 0);
     }
 }

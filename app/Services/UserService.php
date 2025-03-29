@@ -2,17 +2,15 @@
 
 namespace App\Services;
 
+use App\Data\UserData;
 use App\Jobs\GenerateUserTeam;
 use App\Models\User;
 
 class UserService
 {
-    /**
-     * @param  array<string, mixed>  $data
-     */
-    public function store(array $data): void
+    public function store(UserData $data): void
     {
-        $user = User::create($data);
+        $user = User::create($data->toArray());
 
         GenerateUserTeam::dispatch($user);
     }

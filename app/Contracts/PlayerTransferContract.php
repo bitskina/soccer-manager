@@ -2,6 +2,7 @@
 
 namespace App\Contracts;
 
+use App\Data\CreatePlayerTransferData;
 use App\Models\PlayerTransfer;
 use App\Models\Team;
 use Illuminate\Pagination\LengthAwarePaginator;
@@ -15,10 +16,8 @@ interface PlayerTransferContract
 
     /**
      * Store a player transfer.
-     *
-     * @param  array<string, mixed>  $data
      */
-    public function store(array $data): void;
+    public function store(CreatePlayerTransferData $data): void;
 
     public function buy(Team $team, PlayerTransfer $transfer): void;
 }

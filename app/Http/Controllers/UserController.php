@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Data\UserData;
 use App\Http\Requests\Users\StoreUserRequest;
 use App\Services\UserService;
 use Illuminate\Http\Response;
@@ -12,7 +13,7 @@ class UserController extends Controller
 
     public function register(StoreUserRequest $request): Response
     {
-        $this->userService->store($request->validated());
+        $this->userService->store(UserData::from($request->validated()));
 
         return response()->noContent(status: 201);
     }

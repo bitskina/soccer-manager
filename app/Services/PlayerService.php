@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Data\PlayerData;
 use App\Models\Player;
 use App\Models\Team;
 use Illuminate\Pagination\LengthAwarePaginator;
@@ -19,11 +20,8 @@ class PlayerService
             ->paginate();
     }
 
-    /**
-     * @param  array<string, mixed>  $data
-     */
-    public function update(Player $player, array $data): void
+    public function update(Player $player, PlayerData $data): void
     {
-        $player->update($data);
+        $player->update($data->toArray());
     }
 }

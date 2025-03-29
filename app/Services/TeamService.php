@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Data\TeamData;
 use App\Models\Team;
 use App\Models\User;
 
@@ -15,11 +16,8 @@ class TeamService
             ->sole();
     }
 
-    /**
-     * @param  array<string, mixed>  $data
-     */
-    public function update(Team $team, array $data): void
+    public function update(Team $team, TeamData $data): void
     {
-        $team->update($data);
+        $team->update($data->toArray());
     }
 }

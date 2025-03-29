@@ -6,7 +6,7 @@ use App\Models\Player;
 use App\Models\PlayerTransfer;
 use App\Models\Team;
 
-class TransferData
+class TransferData extends AbstractLaravelData
 {
     public function __construct(
         public PlayerTransfer $transfer,

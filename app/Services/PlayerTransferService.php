@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Contracts\PlayerTransferContract;
+use App\Data\CreatePlayerTransferData;
 use App\Data\TransferData;
 use App\Enums\PlayerTransferStatus;
 use App\Exceptions\BusinessLogicException;
@@ -23,12 +24,13 @@ class PlayerTransferService implements PlayerTransferContract
                 'team',
                 'player.country' => fn ($query) => $query->withTranslation(),
             ])
+            ->latest()
             ->paginate();
     }
 
-    public function store(array $data): void
+    public function store(CreatePlayerTransferData $data): void
     {
-        PlayerTransfer::create($data);
+        PlayerTransfer::create($data->toArray());
     }
 
     /**

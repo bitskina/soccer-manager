@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Data\TeamData;
 use App\Http\Requests\Teams\UpdateTeamRequest;
 use App\Http\Resources\Teams\TeamResource;
 use App\Models\User;
@@ -28,7 +29,7 @@ class TeamController extends Controller
         /** @var \App\Models\Team $team */
         $team = Auth::user()?->team;
 
-        $this->teamService->update($team, $request->validated());
+        $this->teamService->update($team, TeamData::from($request->validated()));
 
         return response()->success();
     }

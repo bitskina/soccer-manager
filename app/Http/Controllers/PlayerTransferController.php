@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Contracts\PlayerTransferContract;
+use App\Data\CreatePlayerTransferData;
 use App\Http\Requests\PlayerTransfers\StorePlayerTransferRequest;
 use App\Http\Resources\PlayerTransfers\PlayerTransferResource;
 use App\Models\PlayerTransfer;
@@ -21,7 +22,7 @@ class PlayerTransferController extends Controller
 
     public function store(StorePlayerTransferRequest $request): JsonResponse
     {
-        $this->playerTransferService->store($request->validated());
+        $this->playerTransferService->store(CreatePlayerTransferData::from($request->validated()));
 
         return response()->success();
     }

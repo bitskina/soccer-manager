@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Data\PlayerData;
 use App\Http\Requests\Players\UpdatePlayerRequest;
 use App\Http\Resources\Players\PlayerResource;
 use App\Models\Player;
@@ -27,7 +28,7 @@ class PlayerController extends Controller
     {
         Gate::authorize('update-player', $player);
 
-        $this->playerService->update($player, $request->validated());
+        $this->playerService->update($player, PlayerData::from($request->validated()));
 
         return response()->success();
     }
