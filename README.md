@@ -1,6 +1,6 @@
 # Soccer Application
 
-This is a Laravel-based soccer application. The application allows teams, players, transfers, and other soccer-related features.
+This is a Laravel-based application that allows football fans to create fantasy teams and buy or sell players via a RESTful API.
 
 ## Prerequisites
 
