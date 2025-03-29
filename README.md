@@ -6,7 +6,7 @@ This is a Laravel-based soccer application. The application allows teams, player
 
 Before you begin, ensure you have the following installed:
 
-- PHP >= 8.0
+- PHP >= 8.2
 - Composer
 - MySQL or another compatible database
 - Laravel (should be globally available via Composer)
@@ -16,7 +16,7 @@ Before you begin, ensure you have the following installed:
 1. Clone the repository:
 
     ```bash
-    git clone https://your-repository-url.git
+    git clone git@github.com:bitskina/soccer-manager.git
     cd your-project-directory
     ```
 
