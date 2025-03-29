@@ -19,14 +19,19 @@ class TeamResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'budget' => Number::currency(is_numeric($this->budget) ? (float) $this->budget : 0),
+            'budget' => $this->formatAmount($this->budget),
             'value' => $this->whenAggregated(
                 'players',
                 'market_value',
                 'sum',
-                fn () => Number::currency(is_numeric($this->players_sum_market_value) ? (float) $this->players_sum_market_value : 0)
+                $this->formatAmount($this->players_sum_market_value),
             ),
             'country' => CountryResource::make($this->whenLoaded('country')),
         ];
+    }
+
+    private function formatAmount(mixed $amount): string|false
+    {
+        return Number::currency(is_numeric($this->budget) ? (float) $this->budget : 0);
     }
 }

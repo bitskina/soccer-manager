@@ -17,7 +17,7 @@ Before you begin, ensure you have the following installed:
 
     ```bash
     git clone git@github.com:bitskina/soccer-manager.git
-    cd your-project-directory
+    cd soccer-manager
     ```
 
 2. Install the required PHP dependencies using Composer:
@@ -38,7 +38,7 @@ Before you begin, ensure you have the following installed:
     php artisan key:generate
     ```
 
-5. Configure your `.env` file for the database connection (update the DB credentials):
+5. Configure your `.env` file for the database connection (update the DB credentials).
 
 6. Run the migrations and seed the database with default data:
 
@@ -60,9 +60,21 @@ Before you begin, ensure you have the following installed:
     http://localhost:8000
     ```
 
+## Running the Queue Worker
+
+To process background jobs (such as player transfers, updates, etc.), you need to run the queue worker:
+
+1. Start the queue worker in a new terminal window:
+
+    ```bash
+    php artisan queue:work
+    ```
+
+If you're using Redis for queue management, ensure Redis is running on your machine or server. For local setup, follow the [Redis installation guide](https://redis.io/docs/getting-started/).
+
 ## API Documentation
 
-you can access the documentation via `/docs` route.
+You can access the documentation via `/docs` route.
 
 ## Running Tests
 
